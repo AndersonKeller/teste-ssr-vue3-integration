@@ -977,11 +977,12 @@ export default class Util {
     ];
   }
   async getVue() {
+    console.log("session");
     if (this.$root) {
       return this.$root;
     }
     await this.sleep(1);
-    // this.$root = document.querySelector('#app').__vue__.$root
+    this.$root = document.querySelector("#app");
     return this.$root;
   }
   //TO CLIENT

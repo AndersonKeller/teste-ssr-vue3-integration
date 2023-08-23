@@ -3,6 +3,9 @@
   <p>Example of app using <code>vite-plugin-ssr</code>.</p>
 </template>
 
+<script setup>
+console.log("client");
+</script>
 <style>
 code {
   font-family: monospace;
