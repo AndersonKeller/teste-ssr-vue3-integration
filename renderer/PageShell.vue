@@ -7,7 +7,7 @@
       <Link href="/">Home</Link>
       <Link href="/about">About</Link>
     </div> -->
-    <div class="content"><slot /></div>
+    <slot />
   </div>
 </template>
 

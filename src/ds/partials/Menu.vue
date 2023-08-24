@@ -1,11 +1,19 @@
-<template></template>
+<template>
+  <div class="menu">
+    <button class="btn-teste" @click="setName('oi')">CLOSE{{ result }}</button>
+  </div>
+</template>
 <script setup>
-import { reactive } from "vue";
-import { config, utilClient } from "./Menu.client";
-const isApp = reactive(config);
-const util = reactive(utilClient);
+import { result, setName } from "./Menu.client";
 </script>
 <style>
+.btn-teste {
+  position: fixed;
+  bottom: 300px;
+  left: 300px;
+  cursor: pointer;
+  z-index: 99999999999999999;
+}
 .menu {
   width: 100vw;
   height: auto;

@@ -1,5 +1,6 @@
 <template>
-  <header class="sci-header" v-if="!app"></header>
+  <header class="sci-header"></header>
+
   <Menu />
   <!-- <header class="sci-header" v-if="!$util.isApp()">
     <a class="sci-logo" @click="$util.go('/')">
@@ -17,10 +18,7 @@
 </template>
 
 <script setup>
-import { reactive } from "vue";
 import Menu from "../../partials/Menu.vue";
-import { isApp } from "./Header.client";
-const app = reactive(isApp);
 
 // export default {
 //   name: "Header",
