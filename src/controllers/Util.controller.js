@@ -1,7 +1,5 @@
-import Storage from "../controllers/Storage.controller";
-export default class Util extends Storage {
+export default class Util {
   constructor() {
-    super();
     this.$root = false;
 
     this.celmask = [
@@ -986,7 +984,7 @@ export default class Util extends Storage {
       return this.$root;
     }
     await this.sleep(1);
-    this.$root = document.querySelector("#app");
+    // this.$root = document?.querySelector("#app") || "";
     return this.$root;
   }
   //TO CLIENT
@@ -2385,8 +2383,8 @@ export default class Util extends Storage {
     ];
   }
   // TO CLIENT
-  isApp() {
-    const sessionStorage = this.getLocal("isApp");
-    return "isApp" in sessionStorage ? true : false;
-  }
+  // isApp() {
+  //   const sessionStorage = this.getLocal("isApp");
+  //   return "isApp" in sessionStorage ? true : false;
+  // }
 }

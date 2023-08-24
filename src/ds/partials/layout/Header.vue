@@ -1,7 +1,7 @@
 <template>
   <header class="sci-header" v-if="!app"></header>
-  <!-- <Menu />
-    <header class="sci-header" v-if="!$util.isApp()">
+  <Menu />
+  <!-- <header class="sci-header" v-if="!$util.isApp()">
     <a class="sci-logo" @click="$util.go('/')">
       <img
         alt="logo"
@@ -18,6 +18,7 @@
 
 <script setup>
 import { reactive } from "vue";
+import Menu from "../../partials/Menu.vue";
 import { isApp } from "./Header.client";
 const app = reactive(isApp);
 

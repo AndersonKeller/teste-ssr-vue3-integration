@@ -1,9 +1,10 @@
 import config from "../../app.config.json";
 import Service from "./Service.controller";
-import Util from "./Util.controller.";
-
-export default class Config {
+import StorageTable from "./Storage.controller";
+import Util from "./Util.controller";
+export default class Config extends StorageTable {
   constructor(atualizar = false) {
+    super();
     this.$http = new Service();
     this.$util = new Util();
     this.$root = [];
