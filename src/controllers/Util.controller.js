@@ -1,6 +1,9 @@
-export default class Util {
+import Storage from "../controllers/Storage.controller";
+export default class Util extends Storage {
   constructor() {
+    super();
     this.$root = false;
+
     this.celmask = [
       {
         code: 55,
@@ -976,6 +979,7 @@ export default class Util {
       },
     ];
   }
+
   async getVue() {
     console.log("session");
     if (this.$root) {
@@ -1308,16 +1312,16 @@ export default class Util {
     return str;
   }
 
-  asMoney(string) {
-    // FUNC: asMoney(string)
-    // CC: Converte em moeda brasileira com sifrão e centavos.
-    if (!window.Intl) return "R$ " + parseFloat(string).toFixed(2);
-    var formatter = new Intl.NumberFormat("pt-BR", {
-      style: "currency",
-      currency: "BRL",
-    });
-    return formatter.format(string);
-  }
+  // asMoney(string) {
+  //   // FUNC: asMoney(string)
+  //   // CC: Converte em moeda brasileira com sifrão e centavos.
+  //   if (!window.Intl) return "R$ " + parseFloat(string).toFixed(2);
+  //   var formatter = new Intl.NumberFormat("pt-BR", {
+  //     style: "currency",
+  //     currency: "BRL",
+  //   });
+  //   return formatter.format(string);
+  // }
 
   asDate(data) {
     // FUNC: asDate(data)
@@ -2381,7 +2385,8 @@ export default class Util {
     ];
   }
   // TO CLIENT
-  // isApp() {
-  //   return "isApp" in sessionStorage ? true : false;
-  // }
+  isApp() {
+    const sessionStorage = this.getLocal("isApp");
+    return "isApp" in sessionStorage ? true : false;
+  }
 }

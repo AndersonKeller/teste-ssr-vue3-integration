@@ -21,5 +21,4 @@ const ingresso = new I();
 await ingresso.getApresentacoes();
 const res = await gestaoSocio.getProximosJogos();
 const partidas = res.data;
-console.log(partidas);
 </script>

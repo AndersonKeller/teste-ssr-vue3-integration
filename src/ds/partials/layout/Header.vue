@@ -1,8 +1,7 @@
 <template>
-  <header class="sci-header">
-    <!-- <header class="sci-header" v-if="!$util.isApp()"> -->
-    <!-- <Menu />
-
+  <header class="sci-header" v-if="!app"></header>
+  <!-- <Menu />
+    <header class="sci-header" v-if="!$util.isApp()">
     <a class="sci-logo" @click="$util.go('/')">
       <img
         alt="logo"
@@ -15,24 +14,26 @@
     <div v-else></div>
 
     <HeaderUser /> -->
-  </header>
 </template>
 
-<script>
-import "@/controllers/Storage.controller.js";
-export default {
-  name: "Header",
-  props: ["menus"],
-  components: {
-    Menu: () => import("@/ds/partials/Menu.vue"),
-    MenuContext: () => import("@/ds/partials/Menu-context.vue"),
-    HeaderUser: () => import("@/ds/components/Header-user.vue"),
-  },
-  mounted() {
-    document.body.style.setProperty("--positionSAC", "130px");
-    document.body.style.setProperty("--positionCookies", "74px");
-  },
-};
+<script setup>
+import { reactive } from "vue";
+import { isApp } from "./Header.client";
+const app = reactive(isApp);
+
+// export default {
+//   name: "Header",
+//   props: ["menus"],
+//   components: {
+//     Menu: () => import("@/ds/partials/Menu.vue"),
+//     MenuContext: () => import("@/ds/partials/Menu-context.vue"),
+//     HeaderUser: () => import("@/ds/components/Header-user.vue"),
+//   },
+//   mounted() {
+//     document.body.style.setProperty("--positionSAC", "130px");
+//     document.body.style.setProperty("--positionCookies", "74px");
+//   },
+// };
 </script>
 
 <style scoped>
