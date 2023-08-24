@@ -1,5 +1,3 @@
-import { createApp as Vue } from "vue";
-
 export default class StorageTable {
   // TYPE: Class: Storage()
 
@@ -119,7 +117,3 @@ export default class StorageTable {
     return false;
   }
 }
-
-Vue.prototype.$storage = new StorageTable();
-
-window.$storage = new StorageTable();

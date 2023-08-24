@@ -1,4 +1,4 @@
-import config from "../app.config.json";
+import config from "../../app.config.json";
 import Service from "./Service.controller";
 import Util from "./Util.controller.";
 

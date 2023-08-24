@@ -1,5 +1,6 @@
 <template>
-  <h1>Welcome</h1>
+  <Layout></Layout>
+  <!-- <h1>Welcome</h1>
   This page is:
   <ul>
     <li>Rendered to HTML.</li>
@@ -7,14 +8,14 @@
   </ul>
   <ul>
     <li v-for="item in partidas">{{ item }}</li>
-  </ul>
+  </ul> -->
 </template>
 
 <script setup>
+import Layout from "@/layout/Hub.vue";
 // import { render } from "vue";
-import GestaoSocio from "../../controllers/GestaoSocio.controller";
-import I from "../../controllers/SuperIngresso.controller";
-import Counter from "./Counter.vue";
+import GestaoSocio from "@/controllers/GestaoSocio.controller";
+import I from "@/controllers/SuperIngresso.controller";
 const gestaoSocio = new GestaoSocio();
 const ingresso = new I();
 await ingresso.getApresentacoes();

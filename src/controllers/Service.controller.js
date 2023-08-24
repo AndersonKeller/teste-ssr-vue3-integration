@@ -1,5 +1,5 @@
 import axios from "axios";
-import configs from "../app.config.json";
+import configs from "../../app.config.json";
 const endpoints = configs.endpoints;
 let endpoint = endpoints.producao;
 
