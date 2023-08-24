@@ -1,5 +1,8 @@
-export default class Util {
+import StorageTable from "./Storage.controller";
+
+export default class Util extends StorageTable {
   constructor() {
+    super();
     this.$root = false;
 
     this.celmask = [
@@ -2383,8 +2386,8 @@ export default class Util {
     ];
   }
   // TO CLIENT
-  // isApp() {
-  //   const sessionStorage = this.getLocal("isApp");
-  //   return "isApp" in sessionStorage ? true : false;
-  // }
+  isApp() {
+    const sessionStorage = this.getLocal("isApp");
+    return "isApp" in sessionStorage ? true : false;
+  }
 }

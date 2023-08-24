@@ -1,10 +1,28 @@
 <template>
   <div class="menu">
-    <button class="btn-teste" @click="setName('oi')">CLOSE{{ result }}</button>
+    <img
+      src="@/assets/icons/sci-nav.svg"
+      class="nav-icon-mobile"
+      @click="toggle_nav"
+    />
+    <div
+      id="nav-sidebar"
+      :class="['nav-sidebar', { visible: NavVisible }]"
+      @mouseleave="mouseLeave($event)"
+    >
+      <img
+        src="@/assets/icons/sci-close.svg"
+        @click="toggle_nav"
+        :class="['nav-close-icon-mobile', { visible: NavVisible }]"
+      />
+    </div>
   </div>
 </template>
 <script setup>
-import { result, setName } from "./Menu.client";
+const NavVisible = false;
+function toggle_nav() {
+  console.log("toggle");
+}
 </script>
 <style>
 .btn-teste {
