@@ -65,7 +65,6 @@ import Menu from "../../partials/Menu.vue";
   );
   margin: 0 0 0 64px;
   padding: 0 0 0 80px;
-  z-index: 99;
 }
 .sci-header .sci-logo {
   display: none;

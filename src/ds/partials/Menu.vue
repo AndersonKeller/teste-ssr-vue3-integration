@@ -19,19 +19,14 @@
   </div>
 </template>
 <script setup>
-const NavVisible = false;
+import { ref } from "vue";
+const NavVisible = ref(false);
 function toggle_nav() {
   console.log("toggle");
+  NavVisible.value = !NavVisible.value;
 }
 </script>
 <style>
-.btn-teste {
-  position: fixed;
-  bottom: 300px;
-  left: 300px;
-  cursor: pointer;
-  z-index: 99999999999999999;
-}
 .menu {
   width: 100vw;
   height: auto;

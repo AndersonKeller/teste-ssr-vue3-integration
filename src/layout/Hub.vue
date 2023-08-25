@@ -11,6 +11,7 @@
       <FooterPartners />
       <Footer />
     </template> -->
+    <slot></slot>
   </Wrapper>
 </template>
 <script setup>

@@ -1,5 +1,6 @@
 <template>
-  <Layout></Layout>
+  <button @click="allclose">CLIENT</button>
+
   <!-- <h1>Welcome</h1>
   This page is:
   <ul>
@@ -12,5 +13,14 @@
 </template>
 
 <script setup>
-import Layout from "@/layout/Hub.vue";
+function allclose() {
+  console.log("client");
+}
 </script>
+<style>
+button {
+  position: fixed;
+  bottom: 200px;
+  left: 100px;
+}
+</style>
