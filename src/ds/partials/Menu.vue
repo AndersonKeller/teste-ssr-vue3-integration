@@ -21,6 +21,9 @@
 <script setup>
 import { ref } from "vue";
 const NavVisible = ref(false);
+function mouseLeave() {
+  console.log("mouse");
+}
 function toggle_nav() {
   console.log("toggle");
   NavVisible.value = !NavVisible.value;
