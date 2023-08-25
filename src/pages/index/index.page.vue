@@ -1,6 +1,12 @@
 <template>
-  <button @click="allclose">CLIENT</button>
-
+  <Layout>
+    <ul>
+      <li v-for="item in partidas">
+        <p>{{ item.idevento }}</p>
+      </li>
+    </ul>
+    <button @click="allclose">CLIENT</button>
+  </Layout>
   <!-- <h1>Welcome</h1>
   This page is:
   <ul>
@@ -13,6 +19,9 @@
 </template>
 
 <script setup>
+import Layout from "@/layout/Hub.vue";
+import partidas from "./index.page.server.vue";
+
 function allclose() {
   console.log("client");
 }

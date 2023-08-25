@@ -1,11 +1,11 @@
 <template>
   <Layout>
-    <Suspense v-if="!partidas"><p>carregando</p></Suspense>
-
     <ul>
-      <li v-for="item in partidas">{{ item.idevento }}</li>
+      <li v-for="item in partidas">
+        <p>{{ item.idevento }}</p>
+      </li>
     </ul>
-    <slot></slot>
+    <button @click="allclose">CLIENT</button>
   </Layout>
   <!-- <h1>Welcome</h1>
   This page is:
@@ -21,11 +21,10 @@
 <script setup>
 import GestaoSocio from "@/controllers/GestaoSocio.controller";
 import Layout from "@/layout/Hub.vue";
-import { Suspense } from "vue";
 
 const gestaoSocio = new GestaoSocio();
 
 const res = await gestaoSocio.getProximosJogos();
-// console.log(res.data.result);
+console.log(res.data.result);
 const partidas = res.data.result;
 </script>
