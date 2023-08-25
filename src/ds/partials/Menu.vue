@@ -15,13 +15,13 @@
         @click="toggle_nav"
         :class="['nav-close-icon-mobile', { visible: NavVisible }]"
       />
-      <a class="sci-logo" href="/">
+      <Link class="sci-logo" href="/">
         <img
           alt="logo"
           :src="config.dados.logoNavBar"
           class="sci-logo-desktop"
         />
-      </a>
+      </Link>
       <div class="nav-list">
         <div class="nav-group">
           <div class="nav-trigger" @click="openNav(0)">
@@ -61,15 +61,95 @@
             <Link class="nav-link" href="/">Mais informações</Link>
           </div>
         </div>
+        <Link class="nav-link" href="/">
+          <div class="nav-title">
+            <div class="icon">
+              <img src="@/assets/icons/sci-benefits.svg" class="icon-image" />
+            </div>
+            Benefícios
+          </div>
+        </Link>
+        <div class="nav-group">
+          <div class="nav-trigger" @click="openNav(2)">
+            <div class="nav-title">
+              <div class="icon">
+                <img src="@/assets/icons/sci-ott.svg" class="icon-image" />
+              </div>
+              Conteúdos
+            </div>
+            <div class="icon-nav"></div>
+          </div>
+
+          <div class="nav-sub">
+            <Link class="nav-link" href="/">Galeria</Link>
+            <Link class="nav-link" href="/">Notícias</Link>
+            <Link class="nav-link" href="/">Vídeos</Link>
+          </div>
+        </div>
+        <div class="nav-group">
+          <div class="nav-trigger" @click="openNav(3)">
+            <div class="nav-title">
+              <div class="icon">
+                <img src="@/assets/icons/sci-plans.svg" class="icon-image" />
+              </div>
+              <!-- {{ this.$root.isSocio ? "Planos" : "Associe-se" }} -->
+              Planos
+            </div>
+            <div class="icon-nav"></div>
+          </div>
+
+          <div class="nav-sub">
+            <Link class="nav-link" href="/">Planos</Link>
+            <Link class="nav-link" href="/">Cadeira Locada</Link>
+          </div>
+        </div>
+        <div class="nav-group">
+          <div class="nav-trigger" @click="openNav(4)">
+            <div class="nav-title">
+              <div class="icon">
+                <img src="@/assets/icons/sci-club.svg" class="icon-image" />
+              </div>
+              Clube
+            </div>
+            <div class="icon-nav"></div>
+          </div>
+
+          <div class="nav-sub">
+            <Link class="nav-link" href="/">Sobre o Clube</Link>
+            <Link class="nav-link" href="/">Estrutura</Link>
+            <Link class="nav-link" href="/">Diretoria</Link>
+            <Link class="nav-link" href="/">Projetos Colorados</Link>
+            <Link href="" class="nav-link">Portal de Transparência</Link>
+            <Link
+              href="https://api.whatsapp.com/send?l=pt_BR&phone=55051981147779"
+              target="_blank"
+              class="nav-link"
+              >Canal de denúncias</Link
+            >
+          </div>
+        </div>
+        <Link class="nav-link" href="/">
+          <div class="nav-title">
+            <div class="icon">
+              <img src="@/assets/icons/sci-club.svg" class="icon-image" />
+            </div>
+            Atendimento
+          </div>
+        </Link>
+        <!-- <Radio /> -->
+        <div class="social-media">
+          <SocialMedias color="white" />
+        </div>
       </div>
     </div>
+    <div :class="['nav-mobile-layer', { visible: NavVisible }]"></div>
   </div>
 </template>
 <script setup>
 import { ref } from "vue";
 import Link from "../../../renderer/Link.vue";
-
 import Config from "../../controllers/Config.controller";
+import SocialMedias from "../components/SocialMedias.vue";
 const config = new Config();
 const NavVisible = ref(false);
 
