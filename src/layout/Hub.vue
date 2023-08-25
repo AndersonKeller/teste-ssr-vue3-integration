@@ -11,7 +11,9 @@
       <FooterPartners />
       <Footer />
     </template> -->
-    <slot></slot>
+    <div class="sci-main-container">
+      <slot></slot>
+    </div>
   </Wrapper>
 </template>
 <script setup>

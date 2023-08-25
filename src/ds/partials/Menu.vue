@@ -1,5 +1,5 @@
 <template>
-  <div class="menu">
+  <div class="menu" @click="() => closeAll($event)">
     <img
       src="@/assets/icons/sci-nav.svg"
       class="nav-icon-mobile"
@@ -8,25 +8,131 @@
     <div
       id="nav-sidebar"
       :class="['nav-sidebar', { visible: NavVisible }]"
-      @mouseleave="mouseLeave($event)"
+      @mouseleave="leave($event)"
     >
       <img
         src="@/assets/icons/sci-close.svg"
         @click="toggle_nav"
         :class="['nav-close-icon-mobile', { visible: NavVisible }]"
       />
+      <a class="sci-logo" href="/">
+        <img
+          alt="logo"
+          :src="config.dados.logoNavBar"
+          class="sci-logo-desktop"
+        />
+      </a>
+      <div class="nav-list">
+        <div class="nav-group">
+          <div class="nav-trigger" @click="openNav(0)">
+            <div class="nav-title">
+              <div class="icon">
+                <img src="@/assets/icons/sci-matchs.svg" class="icon-image" />
+              </div>
+              Futebol
+            </div>
+          </div>
+          <div class="nav-sub">
+            <Link class="nav-link" href="/">Próximos jogos</Link>
+            <Link class="nav-link" href="/">Jogos anteriores</Link>
+            <Link class="nav-link" href="/">Equipes</Link>
+          </div>
+        </div>
+        <div class="nav-group">
+          <!-- v-if="$util.isFeatureEnabled(feature_flags.GAMIFICATION)" -->
+          <div class="nav-trigger" @click="openNav(1)">
+            <div class="nav-title">
+              <div class="icon">
+                <img
+                  src="@/assets/icons/sci-experiences.svg"
+                  class="icon-image"
+                />
+              </div>
+              Experiências
+            </div>
+            <div class="icon-nav"></div>
+          </div>
+
+          <div class="nav-sub">
+            <!-- v-if="$util.isFeatureEnabled(feature_flags.GAMIFICATION)" -->
+            <Link class="nav-link" href="/">Extrato</Link>
+            <Link class="nav-link" href="/">Ganhe pontos</Link>
+            <Link class="nav-link" href="/">Resgates</Link>
+            <Link class="nav-link" href="/">Mais informações</Link>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 <script setup>
 import { ref } from "vue";
+import Link from "../../../renderer/Link.vue";
+
+import Config from "../../controllers/Config.controller";
+const config = new Config();
 const NavVisible = ref(false);
-function mouseLeave() {
-  console.log("mouse");
-}
+
 function toggle_nav() {
   console.log("toggle");
   NavVisible.value = !NavVisible.value;
+}
+function openNav(index) {
+  // if (
+  //   index >= 1 &&
+  //   !this.$util.isFeatureEnabled(this.feature_flags.GAMIFICATION)
+  // ) {
+  //   index -= 1;
+  // }
+  const navs = Array.from(document.getElementsByClassName("nav-sub"));
+  const filterNavs = navs.filter((nav) => navs.indexOf(nav) != index);
+  filterNavs.forEach((nav) => nav.classList.remove("open"));
+
+  let icones = Array.from(document.getElementsByClassName("icon-nav"));
+  const filterIcons = icones.filter((nav) => icones.indexOf(nav) != index);
+  filterIcons.forEach((icon) => icon.classList.remove("icon-nav-close"));
+  let groups = Array.from(document.getElementsByClassName("nav-group"));
+  const filterGroups = groups.filter((group) => groups.indexOf(group) != index);
+  filterGroups.forEach((group) => group.removeAttribute("style"));
+  document.getElementsByClassName("nav-sub")[index].classList.toggle("open");
+  document
+    .getElementsByClassName("icon-nav")
+    [index].classList.toggle("icon-nav-close");
+
+  let group = document.getElementsByClassName("nav-group")[index];
+  group.hasAttribute("style")
+    ? group.removeAttribute("style")
+    : group.setAttribute("style", "background-color: rgba(0, 0, 0, 0.1)");
+}
+function closeAll(e) {
+  if (
+    e.target.classList[0] != "nav-trigger" &&
+    e.target.classList[0] != "icon-nav" &&
+    e.target.classList[0] != "icon-image" &&
+    e.target.classList[0] != "nav-title" &&
+    e.target.classList[0] != "icon" &&
+    e.target.classList[0] != undefined
+  ) {
+    let nav = Array.from(document.getElementsByClassName("nav-sub"));
+    let icones = Array.from(document.getElementsByClassName("icon-nav"));
+    let group = Array.from(document.getElementsByClassName("nav-group"));
+    for (let index = 0; index < group.length; index++) {
+      nav[index].classList.remove("open");
+      icones[index].classList.remove("icon-nav-close");
+      group[index].removeAttribute("style");
+    }
+  }
+}
+function leave(e) {
+  console.log("mouse");
+  let nav = Array.from(document.getElementsByClassName("nav-sub"));
+  let icones = Array.from(document.getElementsByClassName("icon-nav"));
+  let group = Array.from(document.getElementsByClassName("nav-group"));
+  for (let index = 0; index < group.length; index++) {
+    nav[index].classList.remove("open");
+    icones[index].classList.remove("icon-nav-close");
+    group[index].removeAttribute("style");
+  }
 }
 </script>
 <style>

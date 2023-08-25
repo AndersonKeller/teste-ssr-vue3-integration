@@ -1,8 +1,9 @@
 import StorageTable from "./Storage.controller";
 
 export default class Util extends StorageTable {
-  constructor() {
+  constructor(client = false) {
     super();
+    this.client = client;
     this.$root = false;
 
     this.celmask = [
@@ -982,7 +983,6 @@ export default class Util extends StorageTable {
   }
 
   async getVue() {
-    console.log("session");
     if (this.$root) {
       return this.$root;
     }
@@ -1069,75 +1069,76 @@ export default class Util extends StorageTable {
   // }
 
   // TO CLIENT
-  //   async go(name, params = {}, query = {}) { //FUNC: go(name, params = {}, query = {})
-  //     // CC: Usa o Vue router para mudar de página
+  async go(name, params = {}, query = {}) {
+    //FUNC: go(name, params = {}, query = {})
+    // CC: Usa o Vue router para mudar de página
 
-  //     if (!name) {
-  //         return
-  //     }
+    if (!name) {
+      return;
+    }
 
-  //     const root = await this.getVue()
-  //     root.menumobile = false
+    const root = await this.getVue();
+    root.menumobile = false;
 
-  //     let instance = await this.getVue()
-  //     let route = instance.$route
-  //     let router = instance.$router
+    let instance = await this.getVue();
+    let route = instance.$route;
+    let router = instance.$router;
 
-  //     if (name == 'back') {
-  //         router.go(-1)
-  //         return
-  //     }
+    if (name == "back") {
+      router.go(-1);
+      return;
+    }
 
-  //     if(typeof name == 'object'){
-  //         if(route.params.pagina == undefined && name.params == undefined){
-  //             if(name.length > 1){
-  //                 router.push( { name: name[0], params: name[1], } )
-  //                 this.scroll()
-  //             }
-  //         }else{
-  //             if(route.params.pagina != name.params.pagina ){
-  //                 router.push(name);
-  //                 this.scroll()
-  //             }
-  //         }
-  //         return
-  //     }
+    if (typeof name == "object") {
+      if (route.params.pagina == undefined && name.params == undefined) {
+        if (name.length > 1) {
+          router.push({ name: name[0], params: name[1] });
+          this.scroll();
+        }
+      } else {
+        if (route.params.pagina != name.params.pagina) {
+          router.push(name);
+          this.scroll();
+        }
+      }
+      return;
+    }
 
-  //     if (name.length == 0) {
-  //         console.warn('Não existe link por favor verificar!')
-  //         return false
-  //     }
+    if (name.length == 0) {
+      console.warn("Não existe link por favor verificar!");
+      return false;
+    }
 
-  //     if(name.indexOf('http') != -1) {
-  //         params == '_blank'  ? window.open(name) : location.href = name
-  //         return false
-  //     }
-  //     if (name == 'sair') {
-  //         this.destroyLocal()
-  //         setTimeout(() => {
-  //             document.location.reload();
-  //         }, 800);
-  //         router.push( { name: 'Home' } );
-  //         return
-  //     }
-  //     if (name == 'sac') {
-  //         instance.$sac.startFlowSac()
-  //         return
-  //     }
-  //     if (name == 'ModalTrocaSenha') {
-  //         this.$root.modalTrocaSenha.show = !this.$root.modalTrocaSenha.show
-  //         return
-  //     }
-  //     if (route.name != name) {
-  //         if (name.substring(0, 1) == '/') {
-  //             router.push(name);
-  //         } else {
-  //             router.push({ name: name, params: params, query: query });
-  //             this.scroll()
-  //         }
-  //     }
-  //     return true
-  // }
+    if (name.indexOf("http") != -1) {
+      params == "_blank" ? window.open(name) : (location.href = name);
+      return false;
+    }
+    if (name == "sair") {
+      this.destroyLocal();
+      setTimeout(() => {
+        document.location.reload();
+      }, 800);
+      router.push({ name: "Home" });
+      return;
+    }
+    if (name == "sac") {
+      instance.$sac.startFlowSac();
+      return;
+    }
+    if (name == "ModalTrocaSenha") {
+      this.$root.modalTrocaSenha.show = !this.$root.modalTrocaSenha.show;
+      return;
+    }
+    if (route.name != name) {
+      if (name.substring(0, 1) == "/") {
+        router.push(name);
+      } else {
+        router.push({ name: name, params: params, query: query });
+        this.scroll();
+      }
+    }
+    return true;
+  }
   async sleep(segundos) {
     //FUNC: sleep(segundos)
     // CC: Pausa "segundos" a leiturta asynconica do js.
@@ -2386,8 +2387,14 @@ export default class Util extends StorageTable {
     ];
   }
   // TO CLIENT
-  isApp() {
-    const sessionStorage = this.getLocal("isApp");
-    return "isApp" in sessionStorage ? true : false;
-  }
+
+  // isApp() {
+  //   if (this.client) {
+  //     console.log("client");
+  //     const sessionStorage = this.getLocal("isApp");
+  //     return "isApp" in sessionStorage ? true : false;
+  //   } else {
+  //     return false;
+  //   }
+  // }
 }

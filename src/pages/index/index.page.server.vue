@@ -25,6 +25,6 @@ import Layout from "@/layout/Hub.vue";
 const gestaoSocio = new GestaoSocio();
 
 const res = await gestaoSocio.getProximosJogos();
-console.log(res.data.result);
+// console.log(res.data.result);
 const partidas = res.data.result;
 </script>

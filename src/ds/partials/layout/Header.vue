@@ -2,6 +2,10 @@
   <header class="sci-header"></header>
 
   <Menu />
+  <a class="sci-logo" @click="util.go('/')">
+    <img alt="logo" :src="config.dados.mundoColorado" class="sci-logo-mobile" />
+  </a>
+
   <!-- <header class="sci-header" v-if="!$util.isApp()">
     <a class="sci-logo" @click="$util.go('/')">
       <img
@@ -18,6 +22,11 @@
 </template>
 
 <script setup>
+import Config from "../../../controllers/Config.controller";
+import Util from "../../../controllers/Util.controller";
+const config = new Config();
+const util = new Util();
+
 import Menu from "../../partials/Menu.vue";
 
 // export default {

@@ -4,14 +4,14 @@
   </a>
 </template>
 <style scoped>
-a {
+/* a {
   padding: 3px 10px;
 }
 a.active {
   background-color: #eee;
-}
+} */
 </style>
 <script setup>
-import { usePageContext } from './usePageContext'
-const pageContext = usePageContext()
+import { usePageContext } from "./usePageContext";
+const pageContext = usePageContext();
 </script>
