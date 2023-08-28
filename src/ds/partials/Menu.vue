@@ -1,5 +1,5 @@
 <template>
-  <div class="menu" @click="() => closeAll($event)">
+  <div class="menu" @click="(e) => closeAll(e)">
     <img
       src="@/assets/icons/sci-nav.svg"
       class="nav-icon-mobile"
@@ -8,7 +8,7 @@
     <div
       id="nav-sidebar"
       :class="['nav-sidebar', { visible: NavVisible }]"
-      @mouseleave="leave($event)"
+      v-on:mouseleave="leave"
     >
       <img
         src="@/assets/icons/sci-close.svg"
@@ -148,6 +148,7 @@
 <script setup>
 import { ref } from "vue";
 import Link from "../../../renderer/Link.vue";
+
 import Config from "../../controllers/Config.controller";
 import SocialMedias from "../components/SocialMedias.vue";
 const config = new Config();
@@ -203,14 +204,15 @@ function closeAll(e) {
     }
   }
 }
-function leave(e) {
+function leave() {
   console.log("mouse");
   let nav = Array.from(document.getElementsByClassName("nav-sub"));
   let icones = Array.from(document.getElementsByClassName("icon-nav"));
   let group = Array.from(document.getElementsByClassName("nav-group"));
+
   for (let index = 0; index < group.length; index++) {
-    nav[index].classList.remove("open");
-    icones[index].classList.remove("icon-nav-close");
+    nav[index]?.classList.remove("open");
+    icones[index]?.classList.remove("icon-nav-close");
     group[index].removeAttribute("style");
   }
 }

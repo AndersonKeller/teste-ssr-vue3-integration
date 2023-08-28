@@ -3,7 +3,7 @@ import Service from "./Service.controller";
 import StorageTable from "./Storage.controller";
 import Util from "./Util.controller";
 export default class Config extends StorageTable {
-  constructor(atualizar = false) {
+  constructor() {
     super();
     this.$http = new Service();
     this.$util = new Util();
@@ -11,14 +11,14 @@ export default class Config extends StorageTable {
     this.dados = config.globalConfigs;
 
     this.regrasDoNegocio = config.regrasDoNegocio;
-    this.getConfig(atualizar);
+    // this.getConfig(atualizar);
   }
   // TO CLIENT
   async getConfig(atualizar = false) {
     this.$root = await this.$util.getVue();
     //  TO CLIENT
-    // let configs_local = this.getLocal("config");
-    let configs_local = "";
+    let configs_local = this.getLocal("config");
+    // let configs_local = "";
     if (configs_local && !atualizar) {
       this.$root.config = configs_local;
       this.$root.isSocio = this.$util
@@ -31,12 +31,9 @@ export default class Config extends StorageTable {
       this.$http.axios
         .post("CONFIGS", { idpessoa_tipo: "" })
         .then(async (response) => {
-          // if (
-          //     !response.isLogado &&
-          //     this.$root.$route.name != "Home"
-          // ) {
-          //     window.$storage.destroyLocal(true);
-          // }
+          if (!response.isLogado && this.$root.$route.name != "Home") {
+            window.$storage.destroyLocal(true);
+          }
 
           this.$root.config = response;
           this.$root.isSocio = this.$util
@@ -45,7 +42,7 @@ export default class Config extends StorageTable {
             ? true
             : false;
 
-          // this.setLocal("config", this.$root.config);
+          this.setLocal("config", this.$root.config);
         })
         .catch((error) => {
           console.error("Falha ao consultar configurações");

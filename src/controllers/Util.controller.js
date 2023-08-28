@@ -3,7 +3,7 @@ import StorageTable from "./Storage.controller";
 export default class Util extends StorageTable {
   constructor(client = false) {
     super();
-    this.client = client;
+
     this.$root = false;
 
     this.celmask = [

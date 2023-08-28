@@ -5,7 +5,7 @@
       target="_blank"
       class="social-link"
     >
-      <img :src="'../../assets/icons/' + color + '/sci-instagram.svg'" />
+      <img :src="instagram" />
     </a>
 
     <a
@@ -13,33 +13,38 @@
       target="_blank"
       class="social-link"
     >
-      <img :src="'../../assets/icons/' + color + '/sci-facebook.svg'" />
+      <img :src="facebook" />
     </a>
     <a
       href="https://www.tiktok.com/@scinternacional"
       target="_blank"
       class="social-link"
     >
-      <img :src="'../../assets/icons/' + color + '/sci-tiktok.svg'" />
+      <img :src="tiktok" />
     </a>
     <a
       href="https://twitter.com/SCInternacional"
       target="_blank"
       class="social-link"
     >
-      <img :src="'../../assets/icons/' + color + '/sci-twitter.svg'" />
+      <img :src="twitter" />
     </a>
     <a
       href="https://www.youtube.com/@scinternacional"
       target="_blank"
       class="social-link"
     >
-      <img :src="'../../assets/icons/' + color + '/sci-youtube.svg'" />
+      <img :src="youtube" />
     </a>
   </div>
 </template>
 <script setup>
 const props = defineProps({ color: String });
+import facebook from "../../assets/icons/white/sci-facebook.svg";
+import instagram from "../../assets/icons/white/sci-instagram.svg";
+import tiktok from "../../assets/icons/white/sci-tiktok.svg";
+import twitter from "../../assets/icons/white/sci-twitter.svg";
+import youtube from "../../assets/icons/white/sci-youtube.svg";
 </script>
 <style scoped>
 .sci-social-medias {

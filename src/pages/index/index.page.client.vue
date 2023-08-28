@@ -5,7 +5,7 @@
         <p>{{ item.idevento }}</p>
       </li>
     </ul>
-    <button>CLIENT</button>
+    <button @click="allclose">CLIENT</button>
   </Layout>
   <!-- <h1>Welcome</h1>
   This page is:
@@ -20,19 +20,16 @@
 
 <script setup>
 import Layout from "@/layout/Hub.vue";
-import GestaoSocio from "../../controllers/GestaoSocio.controller";
 
-const gestaoSocio = new GestaoSocio();
+import partidas from "./index.page.server.vue";
 
-const res = await gestaoSocio.getProximosJogos();
-// const banner = await gestaoSocio.
-console.log(res.data.result);
-const partidas = res.data.result;
-</script>
-<style>
-button {
-  position: fixed;
-  bottom: 200px;
-  left: 100px;
+function localGet() {
+  const local = localStorage.getItem("item");
+  console.log("local");
+  console.log(local);
 }
-</style>
+localGet();
+function allclose() {
+  console.log("client");
+}
+</script>
