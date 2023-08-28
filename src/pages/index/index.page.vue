@@ -5,7 +5,7 @@
         <p>{{ item.idevento }}</p>
       </li>
     </ul>
-    <button @click="allclose">CLIENT</button>
+    <button>CLIENT</button>
   </Layout>
   <!-- <h1>Welcome</h1>
   This page is:
@@ -21,15 +21,4 @@
 <script setup>
 import Layout from "@/layout/Hub.vue";
 import partidas from "./index.page.server.vue";
-
-function allclose() {
-  console.log("client");
-}
 </script>
-<style>
-button {
-  position: fixed;
-  bottom: 200px;
-  left: 100px;
-}
-</style>

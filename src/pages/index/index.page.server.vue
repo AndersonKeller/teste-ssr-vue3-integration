@@ -21,14 +21,26 @@
 <script setup>
 import Layout from "@/layout/Hub.vue";
 import GestaoSocio from "../../controllers/GestaoSocio.controller";
-import Usuario from "../../controllers/Service.controller";
+import Service from "../../controllers/Service.controller";
 const gestaoSocio = new GestaoSocio();
-const usuario = new Usuario();
+const usuario = new Service();
 const banners = await usuario.axios.get(
   `${usuario.ENDPOINTS.GETCONTEUDOS}banners_intenacional`
 );
+const fullBanner = banners.data.result.filter((item) => {
+  //
 
-console.log(banners.data.result);
+  if (item.tags.includes("banner_carroussel")) {
+    item.subtitulo = JSON.parse(item.subtitulo);
+    const obj = {
+      desktop: item.subtitulo.desktop,
+      mobile: item.subtitulo.mobile,
+      link: item.link,
+    };
+    return obj;
+  }
+});
+console.log(fullBanner);
 const res = await gestaoSocio.getProximosJogos();
 // const banner = await gestaoSocio.
 // console.log(res.data.result);
