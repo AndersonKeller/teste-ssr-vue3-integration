@@ -21,12 +21,17 @@
 <script setup>
 import Layout from "@/layout/Hub.vue";
 import GestaoSocio from "../../controllers/GestaoSocio.controller";
-
+import Usuario from "../../controllers/Service.controller";
 const gestaoSocio = new GestaoSocio();
+const usuario = new Usuario();
+const banners = await usuario.axios.get(
+  `${usuario.ENDPOINTS.GETCONTEUDOS}banners_intenacional`
+);
 
+console.log(banners.data.result);
 const res = await gestaoSocio.getProximosJogos();
 // const banner = await gestaoSocio.
-console.log(res.data.result);
+// console.log(res.data.result);
 const partidas = res.data.result;
 </script>
 <style>
