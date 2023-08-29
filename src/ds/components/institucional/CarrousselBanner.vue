@@ -23,10 +23,19 @@
   </div>
 </template>
 <script>
+import { default as allBanners } from "../../../pages/index/index.page.server.vue";
 //@click="$util.go(img_banners[0].link)"
 export default {
   name: "CarrousselBanner",
-  props: ["img_banners"],
+
+  data() {
+    return {
+      img_banners: [],
+    };
+  },
+  mounted() {
+    this.img_banners = allBanners.data().allBanners;
+  },
 };
 </script>
 <style scoped>

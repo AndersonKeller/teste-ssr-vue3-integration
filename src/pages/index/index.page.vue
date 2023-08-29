@@ -1,6 +1,6 @@
 <template>
   <Layout>
-    <CarrousselBanner :img_banners="allBanners" />
+    <CarrousselBanner />
     <!--<Carroussel
       class="carroussel-news-home"
       :slides="noticias_categoria"
@@ -36,12 +36,27 @@
   </Layout>
 </template>
 
-<script setup>
-import Layout from "@/layout/Hub.vue";
-import CarrousselBanner from "../../ds/components/institucional/CarrousselBanner.vue";
-import NextMatches from "../../ds/partials/hub/NextMatches.vue";
+<script>
+import { defineAsyncComponent } from "vue";
 import {
   default as allBanners,
   default as partidas,
 } from "./index.page.server.vue";
+export default {
+  data() {
+    return {
+      partidas: partidas.data().partidas,
+      allBanners: allBanners.data().allBanners,
+    };
+  },
+  components: {
+    Layout: defineAsyncComponent(() => import("@/layout/Hub.vue")),
+    CarrousselBanner: defineAsyncComponent(() =>
+      import("../../ds/components/institucional/CarrousselBanner.vue")
+    ),
+    NextMatches: defineAsyncComponent(() =>
+      import("../../ds/partials/hub/NextMatches.vue")
+    ),
+  },
+};
 </script>

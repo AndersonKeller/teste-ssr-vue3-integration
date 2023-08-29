@@ -1,6 +1,6 @@
 <template>
   <Layout>
-    <CarrousselBanner :img_banners="allBanners" />
+    <CarrousselBanner />
     <!-- <Carroussel
       class="carroussel-news-home"
       :slides="noticias_categoria"
@@ -35,39 +35,61 @@
     <SponsorCarroussel position="2" /> -->
   </Layout>
 </template>
-
-<script setup>
-import Layout from "@/layout/Hub.vue";
-
+<script>
+import { defineAsyncComponent } from "vue";
+import GestaoSocio from "../../controllers/GestaoSocio.controller";
 import Service from "../../controllers/Service.controller";
-import CarrousselBanner from "../../ds/components/institucional/CarrousselBanner.vue";
-import NextMatches from "../../ds/partials/hub/NextMatches.vue";
-import { getMatches } from "./nextMatches";
+export default {
+  components: {
+    Layout: defineAsyncComponent(() => import("@/layout/Hub.vue")),
+    CarrousselBanner: defineAsyncComponent(() =>
+      import("../../ds/components/institucional/CarrousselBanner.vue")
+    ),
+    NextMatches: defineAsyncComponent(() =>
+      import("../../ds/partials/hub/NextMatches.vue")
+    ),
+  },
+  data() {
+    return {
+      allBanners: [],
+      partidas: [],
+    };
+  },
+  methods: {
+    async getMatches() {
+      const gestaoSocio = new GestaoSocio();
+      const res = await gestaoSocio.getProximosJogos();
+      console.log(res.data.result.splice(0, 2));
+      this.partidas = res.data.result.splice(0, 2);
+    },
+    async getBanners() {
+      const usuario = new Service();
+      const banners = await usuario.axios.get(
+        `${usuario.ENDPOINTS.GETCONTEUDOS}banners_intenacional`
+      );
+      const fullBanner = banners.data.result.filter((item) => {
+        if (item.tags.includes("banner_carroussel")) {
+          item.subtitulo = JSON.parse(item.subtitulo);
 
-const usuario = new Service();
-
-async function getBanners() {
-  const banners = await usuario.axios.get(
-    `${usuario.ENDPOINTS.GETCONTEUDOS}banners_intenacional`
-  );
-  const fullBanner = banners.data.result.filter((item) => {
-    if (item.tags.includes("banner_carroussel")) {
-      item.subtitulo = JSON.parse(item.subtitulo);
-
-      const obj = {
-        desktop: item.subtitulo.desktop,
-        mobile: item.subtitulo.mobile,
-        link: item.link,
-      };
-      return obj;
-    }
-  });
-  return fullBanner;
-}
-const allBanners = await getBanners();
-const partidas = await getMatches();
-// console.log(allBanners);
+          const obj = {
+            desktop: item.subtitulo.desktop,
+            mobile: item.subtitulo.mobile,
+            link: item.link,
+          };
+          return obj;
+        }
+      });
+      this.allBanners = fullBanner;
+      return fullBanner;
+    },
+  },
+  mounted() {
+    this.getBanners();
+    this.getMatches();
+  },
+};
 </script>
+
 <style>
 .nav-toggle-carroussel-team {
   display: flex;

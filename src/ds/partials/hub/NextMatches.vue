@@ -24,6 +24,7 @@
     </div>
     <div class="matchs">
       <Card v-for="(dados, index) in disponivel" :key="index">
+        //
         <!-- <MatchInfos type="resume" :match="dados" /> -->
       </Card>
       <Card class="fake-card"></Card>
@@ -33,15 +34,21 @@
 
 <script setup>
 import Util from "../../../controllers/Util.controller";
-import Button from "../../components/Button.vue";
-import Card from "../../components/Card.vue";
-import Headline from "../../components/Headline.vue";
+
 const util = new Util();
 </script>
 <script>
+import { defineAsyncComponent } from "vue";
 export default {
   name: "NextMatches",
   props: ["disponivel"],
+  components: {
+    Button: defineAsyncComponent(() => import("../../components/Button.vue")),
+    Card: defineAsyncComponent(() => import("../../components/Card.vue")),
+    Headline: defineAsyncComponent(() =>
+      import("../../components/Headline.vue")
+    ),
+  },
 };
 </script>
 <style>
