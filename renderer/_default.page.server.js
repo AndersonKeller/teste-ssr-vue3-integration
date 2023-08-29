@@ -59,9 +59,9 @@ async function render(pageContext) {
 @font-face {
   font-family: 'fontSecundaria';
   src: local('Avallon Alt'), local('Avallon-Alt'),
-      url('~@/assets/fonts/Avalon/AvallonAlt.woff2') format('woff2'),
-      url('~@/assets/fonts/Avalon/AvallonAlt.woff') format('woff'),
-      url('~@/assets/fonts/Avalon/AvallonAlt.ttf') format('truetype');
+      url('./src/assets/fonts/Avalon/AvallonAlt.woff2') format('woff2'),
+      url('./src/assets/fonts/Avalon/AvallonAlt.woff') format('woff'),
+      url('./src/assets/fonts/Avalon/AvallonAlt.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -70,7 +70,7 @@ async function render(pageContext) {
 @font-face {
     font-family: "fontMontserratBold";
     src: local("Montserrat"),
-        url("~@/assets/fonts/Montserrat/Montserrat-Bold.ttf") format("truetype");
+        url("./src/assets/fonts/Montserrat/Montserrat-Bold.ttf") format("truetype");
     font-weight: 400;
     font-style: normal;
 }
@@ -78,7 +78,7 @@ async function render(pageContext) {
 @font-face {
     font-family: "fontMontserratRegular";
     src: local("Montserrat"),
-        url("~@/assets/fonts/Montserrat/Montserrat-Regular.ttf")
+        url("./src/assets/fonts/Montserrat/Montserrat-Regular.ttf")
             format("truetype");
     font-weight: 400;
     font-style: normal;
@@ -87,7 +87,7 @@ async function render(pageContext) {
 @font-face {
   font-family: 'fontPoppinsRegular';
   src: local('Poppins'),
-      url('~@/assets/fonts/Poppins/Poppins-Regular.ttf') format('truetype');
+      url('./src/assets/fonts/Poppins/Poppins-Regular.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
 } */

@@ -10,9 +10,9 @@
       :title="`${$t_('news')}`"
       background="https://internacionalcloudfront.eleventickets.com/Novo_layout/bg-home-noticias-23.jpg"
       cardLink="NoticiasSubtitulo"
-    />
-    <NextMatches />
-    <nav class="nav-toggle-carroussel-team">
+    />-->
+    <NextMatches :disponivel="partidas" />
+    <!-- <nav class="nav-toggle-carroussel-team">
       <button
         v-for="(item, index) in showTeam[0]"
         @click="() => toggleTeam(item, index)"
@@ -38,8 +38,12 @@
 
 <script setup>
 import Layout from "@/layout/Hub.vue";
+
 import Service from "../../controllers/Service.controller";
 import CarrousselBanner from "../../ds/components/institucional/CarrousselBanner.vue";
+import NextMatches from "../../ds/partials/hub/NextMatches.vue";
+import { getMatches } from "./nextMatches";
+
 const usuario = new Service();
 
 async function getBanners() {
@@ -61,12 +65,49 @@ async function getBanners() {
   return fullBanner;
 }
 const allBanners = await getBanners();
-console.log(allBanners);
+const partidas = await getMatches();
+// console.log(allBanners);
 </script>
 <style>
-button {
-  position: fixed;
-  bottom: 200px;
-  left: 100px;
+.nav-toggle-carroussel-team {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 auto;
+  padding: 40px 24%;
+  overflow-x: auto;
+  gap: 24px;
+  filter: drop-shadow(0px 37px 35px #000);
+  background-color: var(--dl-color-red-dark);
+  position: relative;
+  z-index: 1;
+  color: var(--dl-color-white);
+}
+.nav-toggle-carroussel-team button {
+  text-transform: uppercase;
+  font-size: 14px;
+  line-height: 24px;
+  font-weight: 700;
+}
+.nav-toggle-carroussel-team button:hover,
+.nav-toggle-carroussel-team button:focus {
+  color: var(--dl-color-primary);
+}
+.carroussel-news-home.slider {
+  padding: 40px 0;
+}
+.carroussel-news-home.slider .slides-group {
+  margin: 0 auto;
+}
+@media (min-width: 991px) {
+  .carroussel-news-home.slider {
+    padding: 40px 80px;
+  }
+}
+@media (max-width: 991px) {
+  .nav-toggle-carroussel-team {
+    padding: 24px;
+  }
 }
 </style>

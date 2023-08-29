@@ -10,9 +10,9 @@
       :title="`${$t_('news')}`"
       background="https://internacionalcloudfront.eleventickets.com/Novo_layout/bg-home-noticias-23.jpg"
       cardLink="NoticiasSubtitulo"
-    />
-    <NextMatches />
-    <nav class="nav-toggle-carroussel-team">
+    />-->
+    <NextMatches :disponivel="partidas" />
+    <!--<nav class="nav-toggle-carroussel-team">
       <button
         v-for="(item, index) in showTeam[0]"
         @click="() => toggleTeam(item, index)"
@@ -39,5 +39,9 @@
 <script setup>
 import Layout from "@/layout/Hub.vue";
 import CarrousselBanner from "../../ds/components/institucional/CarrousselBanner.vue";
-import allBanners from "./index.page.server.vue";
+import NextMatches from "../../ds/partials/hub/NextMatches.vue";
+import {
+  default as allBanners,
+  default as partidas,
+} from "./index.page.server.vue";
 </script>
