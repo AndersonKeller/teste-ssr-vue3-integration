@@ -22,14 +22,12 @@
     </div>
   </div>
 </template>
-<script setup>
+<script>
 //@click="$util.go(img_banners[0].link)"
-
-const props = defineProps({
-  img_banners: [],
-});
-
-console.log(props.img_banners);
+export default {
+  name: "CarrousselBanner",
+  props: ["img_banners"],
+};
 </script>
 <style scoped>
 .div-container__slide__banners {

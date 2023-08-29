@@ -8,7 +8,7 @@ switch (process.env.NODE_ENV) {
     endpoint = endpoints.homologacao;
     break;
   case "production":
-    endpoint = endpoints.producao;
+    endpoint = endpoints.homologacao;
     break;
   case "preproduction":
     endpoint = endpoints.preproducao;

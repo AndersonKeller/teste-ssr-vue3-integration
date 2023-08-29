@@ -1,10 +1,15 @@
 <template>
-  <header class="sci-header"></header>
+  <header class="sci-header">
+    <a class="sci-logo" @click="util.go('/')">
+      <img
+        alt="logo"
+        :src="config.dados.mundoColorado"
+        class="sci-logo-mobile"
+      />
+    </a>
+  </header>
 
   <Menu />
-  <a class="sci-logo" @click="util.go('/')">
-    <img alt="logo" :src="config.dados.mundoColorado" class="sci-logo-mobile" />
-  </a>
 
   <!-- <header class="sci-header" v-if="!$util.isApp()">
     <a class="sci-logo" @click="$util.go('/')">

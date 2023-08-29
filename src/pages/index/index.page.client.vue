@@ -40,10 +40,4 @@
 import Layout from "@/layout/Hub.vue";
 import CarrousselBanner from "../../ds/components/institucional/CarrousselBanner.vue";
 import allBanners from "./index.page.server.vue";
-function localGet() {
-  const local = localStorage.getItem("item");
-  console.log("local");
-  console.log(local);
-}
-localGet();
 </script>
